@@ -1,10 +1,15 @@
+import { useState } from 'react';
+
 export const Links = ({ links }) => {
-	const captureLink = ({ target }) => {
-		navigator.clipboard.writeText(target.name);
+	const [selected, setSelected] = useState(null);
+
+	const captureLink = (event, index) => {
+		navigator.clipboard.writeText(event.target.name);
+		setSelected(index);
 	};
 	return (
 		<>
-			{links.map((link) => {
+			{links.map((link, index) => {
 				return (
 					<div
 						key={link.url}
@@ -14,11 +19,13 @@ export const Links = ({ links }) => {
 						<div className='flex flex-col items-center justify-end flex-1 space-x-4 space-y-2 md:flex-row md:space-y-0'>
 							<div className='font-bold text-cyan'>{link.shortenUrl}</div>
 							<button
-								onClick={captureLink}
+								onClick={(event) => captureLink(event, index)}
 								name={link.shortenUrl}
-								className='p-2 px-8 text-white bg-cyan rounded-lg hover:opacity-70 focus:outline-none'
+								className={`p-2 px-8 text-white rounded-lg hover:opacity-70 focus:outline-none ${
+									index === selected ? 'bg-darkViolet' : 'bg-cyan'
+								}`}
 							>
-								Copy
+								{index === selected ? 'Copied!' : 'Copy'}
 							</button>
 						</div>
 					</div>

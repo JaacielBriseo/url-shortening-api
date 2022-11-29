@@ -1,6 +1,6 @@
-import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { Links } from './Links';
+import axios from 'axios';
+import { Links } from './';
 
 export const Form = () => {
 	const [links, setLinks] = useState(() => {
@@ -47,6 +47,7 @@ export const Form = () => {
 					type='text'
 					name='linkInput'
 					onChange={onInputChange}
+					value={url}
 					placeholder='Shorten a link here'
 					className={`flex-1 p-3 border-2 rounded-lg placeholder-yellow-500 focus:outline-none ${
 						error ? 'border-red' : ''
@@ -58,7 +59,6 @@ export const Form = () => {
 				>
 					Shorten It!
 				</button>
-				{/* ERROR MESSAGES */}
 				<div className='absolute left-7 bottom-3 text-red text-sm italic'>
 					{error ? 'Please enter a valid link' : ''}
 				</div>

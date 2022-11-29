@@ -1,13 +1,14 @@
-import { HeroSection, Navbar, ShortenSection } from './components';
+import { HeroSection, Navbar, ShortenSection, CtaSection, Footer, StatsSection } from './components';
 
 export const UrlShorteningApp = () => {
-
-
 	return (
 		<>
 			<Navbar />
 			<HeroSection />
-			<ShortenSection/>
+			<ShortenSection />
+			<StatsSection />
+			<CtaSection />
+			<Footer />
 		</>
 	);
 };

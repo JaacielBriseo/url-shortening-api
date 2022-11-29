@@ -18,6 +18,10 @@ module.exports = {
 			spacing: {
 				180: '32rem',
 			},
+			backgroundImage:{
+				boostDesk: "url('assets/bg-boost-desktop.svg')",
+				boostMob: "url('assets/bg-boost-mobile.svg')"
+			}
 		},
 	},
 	plugins: [],
