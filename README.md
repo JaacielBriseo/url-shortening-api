@@ -22,8 +22,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [https://www.frontendmentor.io/solutions/responsive-urlshorteningapi-with-vitereact-tailwind-css-and-axios-t4UYhMhgQM]
+- Live Site URL: [https://jaacielbriseo.github.io/url-shortening-api/]
 
 ## My process
 
