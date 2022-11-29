@@ -1,4 +1,7 @@
 export const Links = ({ links }) => {
+	const captureLink = ({ target }) => {
+		navigator.clipboard.writeText(target.name);
+	};
 	return (
 		<>
 			{links.map((link) => {
@@ -10,7 +13,11 @@ export const Links = ({ links }) => {
 						<p className='font-bold text-center text-veryDarkViolet md:text-left'>{link.url}</p>
 						<div className='flex flex-col items-center justify-end flex-1 space-x-4 space-y-2 md:flex-row md:space-y-0'>
 							<div className='font-bold text-cyan'>{link.shortenUrl}</div>
-							<button className='p-2 px-8 text-white bg-cyan rounded-lg hover:opacity-70 focus:outline-none'>
+							<button
+								onClick={captureLink}
+								name={link.shortenUrl}
+								className='p-2 px-8 text-white bg-cyan rounded-lg hover:opacity-70 focus:outline-none'
+							>
 								Copy
 							</button>
 						</div>

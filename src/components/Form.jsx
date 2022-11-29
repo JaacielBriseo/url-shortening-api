@@ -9,31 +9,40 @@ export const Form = () => {
 	const [url, setUrl] = useState('');
 
 	const [error, setError] = useState(false);
+
 	useEffect(() => {
 		localStorage.setItem('urls', JSON.stringify(links));
 	}, [links]);
+
 	const onInputChange = ({ target }) => {
 		setUrl(target.value);
 	};
-	const onClick = (e) => {
+
+	const linkShortener = async (e) => {
 		e.preventDefault();
-		const resp = axios.get(`https://api.shrtco.de/v2/shorten?url=${url}`).then(({ data }) => {
-			setLinks([
-				{
-					url: data.result.original_link,
-					shortenUrl: data.result.short_link,
-				},
-				...links,
-			]);
-		});
-		if (url === '') setError(true);
-		else {
-			setError(false);
-		}
+		const resp = await axios
+			.get(`https://api.shrtco.de/v2/shorten?url=${url}`)
+			.then(({ data }) => {
+				setError(false)
+				setLinks([
+					{
+						url: data.result.original_link,
+						shortenUrl: data.result.short_link,
+					},
+					...links,
+				]);
+			})
+			.catch(error=>{
+				console.log(error)
+				setError(true)
+			})
 	};
 	return (
 		<>
-			<form className='relative flex flex-col w-full p-10 -mt-20 space-y-4 bg-darkViolet rounded-lg md:flex-row md:space-y-0 md:space-x-3'>
+			<form
+				onSubmit={linkShortener}
+				className='relative flex flex-col w-full p-10 -mt-20 space-y-4 bg-darkViolet rounded-lg md:flex-row md:space-y-0 md:space-x-3'
+			>
 				<input
 					type='text'
 					name='linkInput'
@@ -45,7 +54,6 @@ export const Form = () => {
 				/>
 				<button
 					type='submit'
-					onClick={onClick}
 					className='px-10 py-3 text-white bg-cyan rounded-lg hover:bg-cyanLight focus:outline-none md:py-2'
 				>
 					Shorten It!
